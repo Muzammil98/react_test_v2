@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { connect } from "react-redux";
+// Components
+import SearchInput from "./components/Input";
+import List from "./components/List";
 
-function App() {
+function App({ user }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Use github API
+      {console.log(user)}
+      <SearchInput />
+      <List items={["apple", "banana", "orange"]} />
+      {/* THINGS to get from profile items: Name,pic,githublink */}
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = state => ({
+  user: state.user.user
+});
+export default connect(mapStateToProps)(App);
