@@ -1,53 +1,56 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class Modal extends Component {
+class Modal extends Component {
   render() {
+    const { user } = this.props;
     return (
       <div>
         {/* MODAL START */}
         <button
           type="button"
-          class="btn btn-primary"
+          className="btn-outline-dark"
           data-toggle="modal"
           data-target="#exampleModal"
         >
-          Launch demo modal
+          {user.name}
         </button>
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  Modal title
-                </h5>
+        <div className="modal fade" id="exampleModal" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">...</div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
+              <div className="modal-body">
+                <p>
+                  <strong>Full name: </strong>
+                  {user.name}
+                </p>
+                <p>
+                  <strong>Location: </strong>
+                  {user.location ? user.location : "No locaiton"}
+                </p>
+                <p>
+                  <strong>Followers: </strong>
+                  {user.followers}
+                </p>
+                <p>
+                  <strong>Following: </strong>
+                  {user.following}
+                </p>
+                <img
+                  src={user.avatar_url}
+                  height="200"
+                  width="200"
+                  alt="profile_pic"
+                />
               </div>
             </div>
           </div>
@@ -57,3 +60,9 @@ export default class Modal extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.user
+});
+
+export default connect(mapStateToProps)(Modal);
