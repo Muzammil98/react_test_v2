@@ -22,7 +22,11 @@ class Item extends Component {
         />
         <div className="pl-3">
           {user.name ? <Modal /> : ""}
-          <code>{user.html_url}</code>
+          <code>
+            <a href={user.html_url} target="_blank">
+              {user.html_url}
+            </a>
+          </code>
         </div>
       </div>
     );

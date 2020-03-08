@@ -9,7 +9,7 @@ class Modal extends Component {
         {/* MODAL START */}
         <button
           type="button"
-          className="btn-outline-dark"
+          className="btn btn-outline-info"
           data-toggle="modal"
           data-target="#exampleModal"
         >
